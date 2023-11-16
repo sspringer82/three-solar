@@ -1,17 +1,12 @@
-import * as THREE from 'three';
-
 import { animatePlanets, loadPlanets, rotatePlanets } from './planets';
 import './style.css';
 import {
   Controls,
-  addOverlay,
   createAmbientLight,
   createCamera,
   createControls,
-  createRaycaster,
   createRenderer,
   createScene,
-  createStarField,
 } from './util';
 
 const scene = createScene();
@@ -27,12 +22,6 @@ const ambientLight = createAmbientLight();
 scene.add(ambientLight);
 
 const controls = createControls(Controls.OrbitControls, camera, renderer);
-
-const starField = createStarField();
-scene.add(starField);
-
-addOverlay();
-createRaycaster(scene, camera);
 
 function animate() {
   requestAnimationFrame(animate);

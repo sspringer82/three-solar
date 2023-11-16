@@ -1,17 +1,15 @@
-import * as THREE from 'three';
-
-import { animatePlanets, loadPlanets, rotatePlanets } from './planets';
 import './style.css';
 import {
   Controls,
-  addOverlay,
   createAmbientLight,
+  createBox,
   createCamera,
   createControls,
-  createRaycaster,
+  createPlane,
+  createPointLight,
   createRenderer,
   createScene,
-  createStarField,
+  createSphere,
 } from './util';
 
 const scene = createScene();
@@ -19,26 +17,26 @@ const scene = createScene();
 const renderer = createRenderer();
 document.body.appendChild(renderer.domElement);
 
-const camera = createCamera();
-camera.lookAt(0, 0, -5);
+const sphereMesh = createSphere(false);
+scene.add(sphereMesh);
 
-loadPlanets(scene);
+const planeMesh = createPlane();
+scene.add(planeMesh);
+
+const camera = createCamera();
+camera.lookAt(sphereMesh.position);
+
 const ambientLight = createAmbientLight();
 scene.add(ambientLight);
 
+const pointLight = createPointLight();
+scene.add(pointLight);
+
 const controls = createControls(Controls.OrbitControls, camera, renderer);
-
-const starField = createStarField();
-scene.add(starField);
-
-addOverlay();
-createRaycaster(scene, camera);
 
 function animate() {
   requestAnimationFrame(animate);
   controls.update(0.1);
   renderer.render(scene, camera);
-  rotatePlanets(scene);
-  animatePlanets(scene);
 }
 animate();

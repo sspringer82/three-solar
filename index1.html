@@ -5,9 +5,14 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + TS</title>
-    <script src="aframe.min.js"></script>
+    <script src="/aframe.min.js"></script>
   </head>
   <body>
     <script type="module" src="/src/main.ts"></script>
+    <a-scene>
+      <a-camera look-controls position="0 0 5"></a-camera>
+
+      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+    </a-scene>
   </body>
 </html>
